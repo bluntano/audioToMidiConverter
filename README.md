@@ -14,7 +14,7 @@ Pass path of audio file to convert as first parameter (required).
 
 Currently supported formats are: WAV, AIFF
 
-Example call: `./audioToMidi.exe .\audioFiles\SpracheTest1.wav`
+Example call: `./audioToMidi.exe <path to audio file>`
 
 Other (optional) parameters are:
 
