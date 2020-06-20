@@ -1,4 +1,4 @@
-CC=gcc -std=c++14
+CC=gcc -std=c++17
 CXX=g++
 RM=rm -f
 CPPFLAGS=-g $(shell root-config --cflags)
@@ -10,10 +10,10 @@ LIBS=lib/midi.cpp lib/midi-parser.cpp lib/kissfft/kiss_fftr.c lib/kissfft/kiss_f
 SRCS=main.cpp $(LIBS)
 OBJS=$(subst .cc,.o,$(SRCS))
 
-all: main
+all: audioToMidi
 
-main: $(OBJS)
-	$(CXX) $(LDFLAGS) -o main $(OBJS) $(LDLIBS) 
+audioToMidi: $(OBJS)
+	$(CXX) $(LDFLAGS) -o audioToMidi $(OBJS) $(LDLIBS)
 
 main.o: main.cpp lib/midi.h lib/midi-parser.h
 
