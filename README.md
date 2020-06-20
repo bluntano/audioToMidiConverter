@@ -18,6 +18,7 @@ Example call: `./main.exe .\audioFiles\SpracheTest1.wav`
 
 Other (optional) parameters are:
 
+* outputFilepath (used for saving MIDI file to specific location)
 * windowSize (used for fast-fourier transformation)
 * windowDistance (used for fast-fourier transformation)
 * zeroPadding

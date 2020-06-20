@@ -84,7 +84,7 @@ MIDIFile demo()
 int main(int argc, char *argv[])
 {
 	// for demo / testing purposes only
-	demo().saveAs("./output/demo.mid");
+	//demo().saveAs("./output/demo.mid");
 
 	// input validation
 	if (argc < 2)
@@ -92,13 +92,14 @@ int main(int argc, char *argv[])
 		cerr << "At least one input argument is expected. Please provide a file path..." << endl;
 		return -1;
 	}
-	if (argc > 8)
+	if (argc > 9)
 	{
 		cerr << "Too many input arguments (" << argc << ")" << endl;
 		return -1;
 	}
 
 	string inputFilepath = "";
+	string outputFilepath = "./";
 	int windowSize = WINDOW_SIZE;
 	int windowDistance = WINDOW_DISTANCE;
 	int zeroPadding = ZERO_PADDING;
@@ -110,27 +111,31 @@ int main(int argc, char *argv[])
 	for (int i = 1; i < argc; ++i)
 	{
 		char *value = argv[i];
+		cout << argv[i] << endl;
 		switch (i)
 		{
 		case 1:
 			inputFilepath = string(value);
 			break;
 		case 2:
-			windowSize = atoi(value);
+			outputFilepath = string(value);
 			break;
 		case 3:
-			windowDistance = atoi(value);
+			windowSize = atoi(value);
 			break;
 		case 4:
-			zeroPadding = atoi(value);
+			windowDistance = atoi(value);
 			break;
 		case 5:
-			maxNotes = atoi(value);
+			zeroPadding = atoi(value);
 			break;
 		case 6:
-			minVolume = atoi(value);
+			maxNotes = atoi(value);
 			break;
 		case 7:
+			minVolume = atoi(value);
+			break;
+		case 8:
 			noteSwitchThreshold = atoi(value);
 			break;
 		}
@@ -158,10 +163,11 @@ int main(int argc, char *argv[])
 	// get file name without parent directories and file extension
 	string inputFilename = inputFilepath.substr(slashIndex + 1, dotIndex - slashIndex - 1);
 	// add parameter information to file names
-	string filenameSuffix1 = "-" + to_string(windowSize) + "-" + to_string(windowDistance) + "-" + to_string(zeroPadding);
-	string filenameSuffix2 = "-" + to_string(maxNotes) + "-" + to_string(minVolume) + "-" + to_string(noteSwitchThreshold);
+	//string filenameSuffix1 = "-" + to_string(windowSize) + "-" + to_string(windowDistance) + "-" + to_string(zeroPadding);
+	//string filenameSuffix2 = "-" + to_string(maxNotes) + "-" + to_string(minVolume) + "-" + to_string(noteSwitchThreshold);
 	
-	string outputFilename = "./output/" + inputFilename + filenameSuffix1 + filenameSuffix2 + ".mid";
+	string outputFilename = outputFilepath + inputFilename + ".mid";
+	
 	midiFile.saveAs(outputFilename.c_str());
 	cout << "saved MIDI file" << endl;
 }
